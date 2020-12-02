@@ -1,0 +1,19 @@
+version: '3'
+
+services: 
+  aws:
+    image: localstack/localstack-full
+    ports: 
+      - "4566:4566"
+      - "8080:8080"
+    environment:
+      - PORT_WEB_UI=8080
+      - SERVICES=s3
+      - DEFAULT_REGION=us-east-1
+      - DEBUG=1
+      - DATA_DIR=/tmp/localstack/data
+    volumes: 
+      - aws-data:/tmp/localstack/data
+
+volumes:
+  aws-data:
